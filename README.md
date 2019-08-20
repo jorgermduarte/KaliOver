@@ -9,5 +9,5 @@ Web platform that allows to execute commands/blocks of commands and displaying t
 
 
 
-
+![](https://github.com/jorgermduarte/EasyKali/blob/master/.ignore/application.png)
 
