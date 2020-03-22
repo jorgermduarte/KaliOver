@@ -1,2 +1,3 @@
-# node-microservice
-This repo has been intentionally created as a base for microservices network.
+# KaliOver
+A simple webplatform that allows the creation of groups of commands.
+

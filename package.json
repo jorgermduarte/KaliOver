@@ -1,6 +1,6 @@
 {
-  "name": "baseproject",
-  "version": "1.0.0",
+  "name": "KaliOver",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
