@@ -1,0 +1,118 @@
+<%- contentFor('content') %>
+<script>
+    function addcmd(){
+        $("#command-groups").html(
+            $("#command-groups").html() 
+            +
+            ` <div class="form-group row">
+                <label for="inputcommand" class="col-sm-2 col-form-label"><i class="fas fa-plus-square" onclick="addcmd()"></i></label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control">
+                </div>
+            </div>` 
+        );
+    }
+
+    function savecmd(){
+        
+        var $form = $("#command-management");
+        var $inputs = $form.find("input, select, button, textarea");
+
+        var newCmd = {
+            id : "<%= data.id || -1 %>",
+            title : $("#title").val(),
+            description : $("#description").val(),
+            commands : []
+        };
+
+        $form.find("#command-groups input").each(function() {
+            var cmd = $(this).val();
+            if(cmd != ""){
+                newCmd.commands.push({ cmd : cmd });
+            }
+        });
+
+        $inputs.prop("disabled", true);
+
+       
+        console.log(newCmd);
+
+        var request = $.ajax({
+          url: "/api/savecmd",
+          type: "POST",
+          contentType : 'application/json',
+          data: JSON.stringify(newCmd)
+        });
+        
+        // // Callback handler that will be called on success
+        request.done(function (response, textStatus, jqXHR){
+            if(response.type == 1){
+              toastr.success(response.message)
+            }else{
+              toastr.error(response.message)
+            }
+            $inputs.prop("disabled", false)
+            
+        });
+        // // Callback handler that will be called on failure
+        request.fail(function (jqXHR, textStatus, errorThrown){
+            // Log the error to the console
+            toastr.error("Something went wrong ...")
+            $inputs.prop("disabled", false)
+        });
+    }
+</script>
+
+<div class="container-fluid">
+
+    <form id="command-management" action="#">        
+
+        <div class="form-group">
+            <label for="exampleInputTitle1">Group Command Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="<%= data.title %>" >
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputTitle1">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3"><%= data.description %></textarea>
+        </div>
+    
+
+        <div class="form-group">
+            &nbsp;
+        </div>
+
+        <div class="form-group">
+
+            <div class="span"><b>Commands</b></div>
+
+            <div id="command-groups">
+                <% if( data.commands.length >= 1){ %>
+                    <% for(var i = 0; i <  data.commands.length; i++){ %>
+                        <% var currentcmd = data.commands[i]; %>
+                        <div class="form-group row">
+                            <label for="inputcommand" class="col-sm-2 col-form-label"><i class="fas fa-plus-square" onclick="addcmd()"></i></label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" value="<%=currentcmd.cmd%>">
+                            </div>
+                        </div>
+                    <% } %>
+                <% }else{ %>
+
+                    <div class="form-group row">
+                        <label for="inputcommand" class="col-sm-2 col-form-label"><i class="fas fa-plus-square" onclick="addcmd()"></i></label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" value="">
+                        </div>
+                    </div>
+
+                <% } %>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-secondary" onclick="savecmd()">Save</button>
+        </div>
+    </form>
+
+</div>

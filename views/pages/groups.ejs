@@ -1,0 +1,22 @@
+<%- contentFor('content') %>
+<div class="container-fluid">
+    <div class="form-group">
+        <a href="/application/groups/new"><button type="button" class="btn btn-secondary">Create New Command</button></a>
+    </div>
+</div>
+
+<div class="list-group">
+
+  <% for(var i = 0; i < data.length; i++){ %>
+    <% var current = data[i]; %>
+
+    <a href="/application/groups/<%=i%>" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= current.title %></h5>
+        <small></small>
+      </div>
+      <p class="mb-1"><%=current.description %></p>
+    </a>
+
+  <%  } %>
+  </div>

@@ -1,0 +1,18 @@
+#console{
+  height:60vh;
+  overflow: auto;
+
+}
+
+.main-sidebar{
+  background-color: slateblue;
+}
+
+.brand-link{
+  background-color: slateblue !important;
+  border:none !important;
+}
+
+[class*=sidebar-dark] .user-panel {
+  border-bottom: none;
+}

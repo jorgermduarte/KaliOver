@@ -1,14 +1,2 @@
-# EasyKali
-Web platform that allows to execute commands/blocks of commands and displaying them on the console real-time.
-
-
-*Requirements*
-
-- Kali Linux
-- Node
-- Wifi adapter with monitor mode.
-
-
-
-![](https://github.com/jorgermduarte/EasyKali/blob/master/.ignore/application.png)
-
+# node-microservice
+This repo has been intentionally created as a base for microservices network.

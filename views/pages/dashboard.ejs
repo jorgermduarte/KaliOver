@@ -1,0 +1,54 @@
+<%- contentFor('content') %>
+
+<script>
+  function submitcmd(){
+    
+    var text = $("#commandinput").val();
+    console.log(" - invoking cmd :: " + text);
+    actions.request(-1,text);
+  }
+
+  function submitmodule(){
+    var moduleselected = $("#modulescmds option:selected").val();
+    actions.request(parseInt(moduleselected),"");
+  }
+
+</script>
+
+
+<div class="container-fluid">
+    <div class="form-group">
+        <div class="input-group">
+            <select class="custom-select" id="modulescmds" aria-label="Example select with button addon">
+              <option selected value="-1">Command Groups...</option>
+              <%for(var i = 0; i < data.length; i++){  %>
+                <option value="<%=i%>"><%=data[i].title %></option>
+
+              <% } %>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" onclick="submitmodule()"><i class="fas fa-rocket"></i></button>
+            </div>
+          </div>
+    </div>
+
+    <div class="form-group">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="commandinput" placeholder="Custom command ... " aria-label="Custom command ... " aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" onclick="submitcmd()"><i class="fas fa-rocket"></i></button>
+            </div>
+          </div>
+    </div>
+</div>
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Command Result</li>
+    </ol>   
+</nav>
+
+<div class="container-fluid" style="background-color:white;" id="console">
+  
+</div>
