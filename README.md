@@ -2,13 +2,14 @@
 A simple webplatform that allows the creation of groups of commands.
 
 
-*Dependencies
+Dependencies
 - 
 -
 -
 
 
-*Images 
+
+# Images
 
 
 ![Dashboard](https://github.com/jorgermduarte/KaliOver/blob/master/public/img/dashboard.png)
