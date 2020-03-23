@@ -5,7 +5,7 @@ module.exports = (socket) => {
     console.log(`socket connected ${socket.id}`)
 
     socket.on('command.input',(input) => {
-        console.log(input,"fuck");
+        // console.log(input,"fuck");
         if(input.module >= 0){
             console.log("module invoke requested : " + input.module);
             var newGM = new GroupMang();
@@ -16,8 +16,11 @@ module.exports = (socket) => {
             }
 
         }else{
-            console.log("Simple text exec: " + input.command);
-            ExecCmd(socket,input.command);
+            
+            if(input.command != ""){
+                ExecCmd(socket,input.command);
+            }
+            
         }
     });
 
