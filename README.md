@@ -3,9 +3,10 @@ A simple webplatform that allows the creation of groups of commands.
 
 
 Dependencies
-- 
--
--
+- Node
+
+# To do
+- Webhooks support
 
 
 
